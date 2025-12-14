@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - RxScript PH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 h-screen overflow-hidden">
+    <div class="h-full flex items-center justify-center px-4 py-4">
+        <div class="max-w-4xl w-full bg-white rounded-2xl shadow-2xl h-full flex flex-col overflow-hidden">
+            <!-- Scrollable Content -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <!-- Header -->
+                <div class="text-center mb-4">
+                    <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full mb-2">
+                        <span class="text-white text-xl font-bold">Rx</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800 mb-1">RxScript PH</h1>
+                    <p class="text-sm text-gray-600">Create Your Account</p>
+                </div>
+
+                <form id="registrationForm" class="space-y-4">
+                <!-- Basic Information -->
+                <div class="border-b border-gray-200 pb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-3">Basic Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label for="firstName" class="block text-xs font-medium text-gray-700 mb-1">First Name</label>
+                            <input type="text" id="firstName" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="First Name">
+                            <div id="firstNameError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-xs font-medium text-gray-700 mb-1">Last Name</label>
+                            <input type="text" id="lastName" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Last Name">
+                            <div id="lastNameError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="regEmail" class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="regEmail" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Email">
+                            <div id="regEmailError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="phoneNumber" class="block text-xs font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phoneNumber" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Phone Number">
+                            <div id="phoneNumberError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="regPassword" class="block text-xs font-medium text-gray-700 mb-1">Password</label>
+                            <input type="password" id="regPassword" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Password">
+                            <div id="regPasswordError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="confirmPassword" class="block text-xs font-medium text-gray-700 mb-1">Confirm Password</label>
+                            <input type="password" id="confirmPassword" required class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Confirm Password">
+                            <div id="confirmPasswordError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="regRole" class="block text-xs font-medium text-gray-700 mb-1">Register as:</label>
+                            <select id="regRole" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors">
+                                <option value="PATIENT">Patient</option>
+                                <option value="DOCTOR">Doctor</option>
+                                <option value="PHARMACY">Pharmacy</option>
+                            </select>
+                            <div id="regRoleError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient Fields -->
+                <div id="patientFields" class="border-b border-gray-200 pb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-3">Patient Details</h2>
+                    <div>
+                        <label for="patientBirthDate" class="block text-xs font-medium text-gray-700 mb-1">Birth Date</label>
+                        <input type="date" id="patientBirthDate" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors">
+                        <div id="patientBirthDateError" class="hidden text-xs text-red-600 mt-1"></div>
+                    </div>
+                </div>
+
+                <!-- Doctor Fields -->
+                <div id="doctorFields" class="hidden border-b border-gray-200 pb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-3">Doctor Details</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label for="doctorBirthDate" class="block text-xs font-medium text-gray-700 mb-1">Birth Date</label>
+                            <input type="date" id="doctorBirthDate" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors">
+                            <div id="doctorBirthDateError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="doctorSpecialization" class="block text-xs font-medium text-gray-700 mb-1">Specialization</label>
+                            <input type="text" id="doctorSpecialization" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Specialization">
+                            <div id="doctorSpecializationError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="doctorLicense" class="block text-xs font-medium text-gray-700 mb-1">PRC License</label>
+                            <input type="text" id="doctorLicense" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="PRC License">
+                            <div id="doctorLicenseError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="clinicName" class="block text-xs font-medium text-gray-700 mb-1">Clinic Name</label>
+                            <input type="text" id="clinicName" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Clinic Name">
+                            <div id="clinicNameError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pharmacy Fields -->
+                <div id="pharmacyFields" class="hidden border-b border-gray-200 pb-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-3">Pharmacy Details</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                            <label for="pharmacyName" class="block text-xs font-medium text-gray-700 mb-1">Pharmacy Name</label>
+                            <input type="text" id="pharmacyName" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Pharmacy Name">
+                            <div id="pharmacyNameError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div>
+                            <label for="address" class="block text-xs font-medium text-gray-700 mb-1">Address</label>
+                            <input type="text" id="address" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="Address">
+                            <div id="addressError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="operatingHours" class="block text-xs font-medium text-gray-700 mb-1">Operating Hours</label>
+                            <input type="text" id="operatingHours" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-colors" placeholder="e.g. 9:00 AM - 5:00 PM">
+                            <div id="operatingHoursError" class="hidden text-xs text-red-600 mt-1"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="flex items-start">
+                    <input type="checkbox" id="agreeTerms" required class="mt-1 h-3 w-3 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <label for="agreeTerms" class="ml-2 block text-xs text-gray-700">
+                        I agree to the <a href="#" class="text-blue-600 hover:text-blue-800">Terms of Service</a> and <a href="#" class="text-blue-600 hover:text-blue-800">Privacy Policy</a>
+                    </label>
+                </div>
+                <div id="agreeTermsError" class="hidden text-xs text-red-600 mt-1"></div>
+            </form>
+            </div>
+
+            <!-- Fixed Footer -->
+            <div class="border-t border-gray-200 p-4 bg-gray-50">
+                <!-- Buttons -->
+                <div class="flex gap-3 mb-3">
+                    <button type="submit" form="registrationForm" class="w-full px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition shadow-md hover:shadow-lg">
+                        Register
+                    </button>
+                </div>
+                <!-- Login Link -->
+                <div class="text-center">
+                    <p class="text-xs text-gray-600">
+                        Already have an account?
+                        <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div
+      id="verificationModal"
+      class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50"
+    >
+      <div class="relative top-20 mx-auto p-6 border w-11/12 max-w-md shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+          <div class="flex items-center justify-center w-16 h-16 mx-auto bg-yellow-100 rounded-full mb-4">
+            <svg
+              class="w-8 h-8 text-yellow-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">
+            Account Verification Required
+          </h3>
+          <div class="mt-2 px-4 py-3">
+            <p class="text-sm text-gray-500">
+              Your account has been created successfully! However, your account is waiting for admin verification. Please wait for the admin to verify your account before you can access the dashboard.
+            </p>
+          </div>
+          <div class="flex justify-center mt-4">
+            <button
+              onclick="closeVerificationModal()"
+              class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        // Role switching logic
+        document.getElementById("regRole").addEventListener("change", function () {
+            document.getElementById("patientFields").classList.add("hidden");
+            document.getElementById("doctorFields").classList.add("hidden");
+            document.getElementById("pharmacyFields").classList.add("hidden");
+            
+            if (this.value === "PATIENT") {
+                document.getElementById("patientFields").classList.remove("hidden");
+            } else if (this.value === "DOCTOR") {
+                document.getElementById("doctorFields").classList.remove("hidden");
+            } else if (this.value === "PHARMACY") {
+                document.getElementById("pharmacyFields").classList.remove("hidden");
+            }
+        });
+    </script>
+    <!-- Load scripts in order: utils first, then register -->
+    <script src="./auth/utils.js"></script>
+    <script src="./auth/register.js"></script>
+</body>
+</html>
